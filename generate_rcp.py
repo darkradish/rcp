@@ -1,5 +1,31 @@
 """
 Generate RCP files randomly
+
+This script generates RCP files by randomly populating a PDF template with data from a YAML file.
+
+**Usage:**
+
+1. Ensure that the following files are available in the `models` directory:
+    - `Trame de fiche RCP CHC.pdf` - The PDF template
+    - `rcp_data.yaml` - The YAML file containing the data
+    2. Modify the `PDF_DEST` variable to specify the desired output filename and location.
+
+3. Run the script to generate the RCP files.
+
+**Technical Details:**
+
+* The script uses the ReportLab library for PDF generation.
+* The `random_date` function generates a random date between two specified dates.
+* The `set_elem` function recursively sets element values in the calq data structure.
+* The `deep_write_calq` function recursively writes the calq data to the PDF canvas.
+* The `write_calq` function generates the PDF from the calq data.
+
+**Dependencies:**
+
+* ReportLab
+* PyPDF2
+* yaml
+
 """
 from random import randrange, randint, uniform
 from datetime import timedelta, datetime
@@ -11,7 +37,7 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4, mm
 import yaml
 
-PDF_SRC = "models/rcp_model.pdf"
+PDF_SRC = "models/Trame de fiche RCP CHC.pdf"
 PDF_DEST = "files/test.pdf"
 DATA_YAML = "models/rcp_data.yaml"
 DAY_BETWEEN_1 = datetime.strptime('1/1/2020 1:30 PM', '%m/%d/%Y %I:%M %p')
@@ -87,9 +113,16 @@ def set_elem(element):
         if "after" in draw_info:
             date_begin = datetime.strptime(
                 MEMORY[draw_info["after"]]["value"], "%d-%m-%Y")
+            date_end = DAY_BETWEEN_2
+        elif "between" in draw_info:
+            date_begin = datetime.strptime(
+                draw_info["between"][0], "%d-%m-%Y")
+            date_end = datetime.strptime(
+                draw_info["between"][1], "%d-%m-%Y")
         else:
             date_begin = DAY_BETWEEN_1
-        draw_info["value"] = random_date(date_begin, DAY_BETWEEN_2)
+            date_end = DAY_BETWEEN_2
+        draw_info["value"] = random_date(date_begin, date_end)
         draw_info["textSize"] = 7
 
     elif element["type"] == "int":

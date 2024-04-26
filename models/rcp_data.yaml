@@ -1,6 +1,50 @@
 ---
 pages:
-  1:
+  1: 
+    etablissement:
+      elem:
+        - type: string
+          name: "Nom etablissement"
+          position:
+            x: 11.31
+            y: 28.10
+          values:
+            - "CHU de paris"
+
+    Patient:
+      elem:
+        - type: string
+          name: nom
+          position:
+            x: 4.71
+            y: 15.81
+          values:
+            - albert
+        - type: string
+          name: prenom
+          position:
+            x: 2.73
+            y: 14.83
+          values:
+            - george
+        - type: string
+          name: sexe
+          position:
+            x: 3.33
+            y: 14.45
+          values:
+            - M
+            - F
+            - A
+        - type: date
+          name: naissance
+          position:
+            x: 4.47
+            y: 13.91
+          between:
+            - 01-01-1924
+            - 01-01-2004
+  2:
     cirrhose:
       elem:
         - type: list
@@ -317,7 +361,7 @@ pages:
           position:
             x: 15.06
             y: 3.5
-  2:
+  3:
     donnees_biologiques:
       elem:
         - type: float
