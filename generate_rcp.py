@@ -128,6 +128,7 @@ def set_elem(element):
         draw_info["textSize"] = 7
 
     elif element["type"] == "int":
+        
         draw_info["value"] = str(
             randint(element["between"][0], element["between"][1])) + " " + draw_info["unit"]
         draw_info["textSize"] = 7
@@ -186,8 +187,14 @@ def deep_write_calq(can, draw, json_path ={}):
                                  ["x"])*10.0*mm, float(draw
                                                        ["position"]["y"])*10.0*mm, str(draw["value"]))
             if "json_path" in draw:
-                set_value_by_path(JSON_MODEL, draw["json_path"], str(draw["value"]))
-                print(f"+++++++++++++ {JSON_MODEL}")
+                if "json_value" in draw:
+                    jvalue = draw["json_value"]
+                elif draw["value"] in ["x"]:
+                    jvalue = "true"
+                else:
+                    jvalue = str(draw["value"])
+                set_value_by_path(JSON_MODEL, draw["json_path"], jvalue)
+                
         if "elem" in draw:
             deep_write_calq(can, draw)
 

@@ -29,6 +29,7 @@ pages:
             - george
         - type: string
           name: sexe
+          json_path: date.patient.sexe
           position:
             x: 3.33
             y: 14.45
@@ -38,6 +39,7 @@ pages:
             - A
         - type: date
           name: naissance
+          json_path: date.patient.date_naissance
           position:
             x: 4.47
             y: 13.91
@@ -53,26 +55,38 @@ pages:
               position:
                 x: 4.9
                 y: 27.4
+              json_path: Cirrhose_documentee
+              json_value: "true"
               elem:
                 - type: list
                   values:
                     - name: clinique
+                      json_path: arguments.clinique
+                      json_value: "true"
                       position:
                         x: 7.05
                         y: 26.9
                     - name: marqueur
+                      json_path: arguments.marqueurs_non_invasifs
+                      json_value: "true"
                       position:
                         x: 9.3
                         y: 26.9
                     - name: imagerie
+                      json_path: arguments.imagerie
+                      json_value: "true"
                       position:
                         x: 13.7
                         y: 26.9
                     - name: biopsie
+                      json_path: arguments.biopsie
+                      json_value: "true"
                       position:
                         x: 16.6
                         y: 26.9
             - name: "non"
+              json_path: Cirrhose_documentee
+              json_value: "false"
               position:
                 x: 5.9
                 y: 27.4
@@ -89,17 +103,21 @@ pages:
                   position:
                     x: 7.64
                     y: 25.96
+                  json_path: gastroscopie.oui_date_de_la_derniere
                 - type: list
                   values:
                     - name: Non recherchées
+                      json_path: gastroscopie.Varices_oesophagiennes_gastriques.Non_recherchees
                       position:
                         x: 6.7
                         y: 25.47
                     - name: Absentes
+                      json_path: gastroscopie.Varices_oesophagiennes_gastriques.Absentes
                       position:
                         x: 10.37
                         y: 25.47
                     - name: Présentes
+                      json_path: gastroscopie.Varices_oesophagiennes_gastriques.Presentes_grade_des_VO
                       position:
                         x: 12.83
                         y: 25.47
@@ -113,6 +131,7 @@ pages:
                             - B
                             - C
             - name: "non"
+              json_path: gastroscopie.non
               position:
                 x: 9.95
                 y: 25.96
@@ -121,22 +140,27 @@ pages:
         - type: list
           values:
             - name: Absente
+              json_path: ascite.Absente
               position:
                 x: 2.57
                 y: 24.47
             - name: Modérée
+              json_path: ascite.Moderee
               position:
                 x: 4.92
                 y: 24.47
             - name: Abondante
+              json_path: ascite.Abondante
               position:
                 x: 7.35
                 y: 24.47
             - name: Pas d’ascite clinique mais visible en imagerie
+              json_path: ascite.Pas_ascite_clinique_mais_visible_en_imagerie
               position:
                 x: 2.55
                 y: 23.95
             - name: Pas d’ascite actuellement mais ATCD d’ascite
+              json_path: ascite.Pas_ascite_actuellement_mais_ATCD_d_ascite
               position:
                 x: 9.73
                 y: 23.95
@@ -145,15 +169,18 @@ pages:
         - type: list
           values:
             - name: oui
+              json_path: encephalopathie.oui
               position:
                 x: 4.12
                 y: 23.09
               elem:
                 - type: date
+                  json_path: encephalopathie.Si_oui_date_du_diagnostic
                   position:
                     x: 12
                     y: 23.09
             - name: non
+              json_path: encephalopathie.non
               position:
                 x: 5.74
                 y: 23.09
@@ -167,6 +194,7 @@ pages:
                 y: 21.54
               elem:
                 - type: int
+                  json_path: alcool.OUI_depuis_combien_de_temps
                   between:
                     - 3
                     - 365
@@ -180,6 +208,7 @@ pages:
                 y: 21.54
               elem:
                 - type: float
+                  json_path: alcool.NON_consommation_actuelle_d_alcool
                   between:
                     - 1
                     - 3
@@ -190,12 +219,15 @@ pages:
     histoire:
       elem:
         - type: date
+          json_path: histoire_de_la_maladie.date_du_diagnostic
           position:
             x: 5.68
             y: 19.5
         - type: list
+          json_path: histoire_de_la_maladie.Prouve_histologiquement
           values:
             - name: "oui"
+              json_path: histoire_de_la_maladie.Prouve_histologiquement
               position:
                 x: 5.1
                 y: 19
@@ -231,16 +263,19 @@ pages:
                     type: line
                     elem:
                       - type: date
+                        json_path: histoire_de_la_maladie.intervention_1.Date
                         position:
                           x: 1.68
                           y: 15.39
                       - name: Type d’intervention
                         type: string
+                        json_path: histoire_de_la_maladie.intervention_1.Type_intervention
                         position:
                           x: 7.3
                           y: 15.6
                         value_ref: list_histoire
                       - name: Nombre de cures
+                        json_path: histoire_de_la_maladie.intervention_1.Nombre_de_cures
                         type: int
                         unit: ""
                         between:
@@ -250,11 +285,13 @@ pages:
                           x: 11.45
                           y: 15.6
                       - name: Date de la dernière intervention
+                        json_path: histoire_de_la_maladie.intervention_1.Date_derniere_intervention
                         type: date
                         position:
                           x: 9.18
                           y: 15.18
                       - name: Localisation
+                        json_path: histoire_de_la_maladie.intervention_1.Localisation
                         type: string
                         position:
                           x: 12.33
@@ -262,6 +299,7 @@ pages:
                         values:
                           - ici
                       - name: Taille
+                        json_path: histoire_de_la_maladie.intervention_1.Taille
                         type: int
                         unit: cm
                         between:
@@ -271,6 +309,7 @@ pages:
                           x: 14.57
                           y: 15.18
                       - name: Information complémentaire
+                        json_path: histoire_de_la_maladie.intervention_1.Information_complementaire
                         type: string
                         values:
                           - ceci est une info
@@ -279,6 +318,8 @@ pages:
                           y: 14.7
 
             - name: "non"
+              json_path: histoire_de_la_maladie.Prouve_histologiquement
+              json_value: "false"
               position:
                 x: 6.03
                 y: 19
@@ -294,6 +335,7 @@ pages:
             elem:
               - name: type
                 type: string
+                json_path: traitements_systemiques.traitements.type
                 position:
                   x: 3
                   y: 8.36
@@ -301,16 +343,19 @@ pages:
                   - le Type
               - type: date
                 name: Traitements_debut
+                json_path: traitements_systemiques.traitements.Date_de_debut
                 position:
                   x: 8.6
                   y: 8.36
               - type: date
                 after: Traitements_debut
+                json_path: traitements_systemiques.traitements.Date_de_fin
                 position:
                   x: 11.26
                   y: 8.36
               - name: Motif
                 type: string
+                json_path: traitements_systemiques.traitements.Motif_arret
                 position:
                   x: 13.63
                   y: 8.36
@@ -320,17 +365,21 @@ pages:
           name: Soins de conforts
           values:
             - name: oui
+              json_path: traitements_systemiques.Soins_de_confort
               position:
                 x: 4.3
                 y: 5.84
               elem:
                 - type: string
+                  json_path: traitements_systemiques.Si_oui_preciser
                   values:
                     - un coussin
                   position:
                     x: 4.18
                     y: 5.32
             - name: non
+              json_path: traitements_systemiques.Soins_de_confort
+              json_value: "false"
               position:
                 x: 5.26
                 y: 5.84
@@ -338,6 +387,7 @@ pages:
       elem:
         - type: int
           name: poids
+          json_path: imc.poids
           unit: Kg
           between:
             - 50
@@ -347,6 +397,7 @@ pages:
             y: 3.5
         - type: float
           name: Taille
+          json_path: imc.taille
           unit: m
           between:
             - 1.5
@@ -356,9 +407,11 @@ pages:
             y: 3.5
         - type: int
           name: ECOG
-          values:
+          json_path: imc.ECOG
+          unit: ""
+          between:
             - 0
-            
+            - 5
           position:
             x: 15.06
             y: 3.5
@@ -366,6 +419,7 @@ pages:
     donnees_biologiques:
       elem:
         - type: float
+          json_path: Donnees_Biologique_moins_de_4_semaines.Bilirubine_totale.value
           name: Bilirubine
           between:
             - 0
@@ -375,6 +429,7 @@ pages:
             x: 4.15
             y: 26.8
         - type: float
+          json_path: Donnees_Biologique_moins_de_4_semaines.Creatinine.value
           name: Créatinine
           between:
             - 0
@@ -385,6 +440,7 @@ pages:
             y: 26.8
         - type: float
           name: Albumine
+          json_path: Donnees_Biologique_moins_de_4_semaines.Albumine.value
           between:
             - 0
             - 5
@@ -393,6 +449,7 @@ pages:
             x: 15.32
             y: 26.8
         - type: float
+          json_path: Donnees_Biologique_moins_de_4_semaines.Plaquettes.value
           name: Plaquettes
           between:
             - 0
@@ -402,6 +459,7 @@ pages:
             x: 3.34
             y: 25.9
         - type: float
+          json_path: Donnees_Biologique_moins_de_4_semaines.TP.pourcentage
           name: TP
           between:
             - 0
@@ -413,6 +471,7 @@ pages:
         - type: list
           name: AVK ou AOD
           zero_value: true
+          json_path: Donnees_Biologique_moins_de_4_semaines.TP.AVK_ou_AOD
           position:
             x: 15.32
             y: 26.8
@@ -423,6 +482,7 @@ pages:
                 y: 25.4
         - type: float
           name: INR
+          json_path: Donnees_Biologique_moins_de_4_semaines.INR.value
           between:
             - 0
             - 5
@@ -432,6 +492,7 @@ pages:
             y: 25.9
         - type: float
           name: Facteur V
+          json_path: Donnees_Biologique_moins_de_4_semaines.Facteur_V.value
           between:
             - 0
             - 100
@@ -440,7 +501,8 @@ pages:
             x: 3.79
             y: 24.73
         - type: float
-          name: Facteur V
+          name: Alpha
+          json_path: Donnees_Biologique_moins_de_4_semaines.Alpha_foetoproteine.value
           between:
             - 0
             - 5
@@ -451,6 +513,7 @@ pages:
     imagerie:
       elem:
         - type: date
+          json_path: imagerie.date
           position:
             x: 15.71
             y: 22.6
@@ -465,6 +528,7 @@ pages:
         - type: list
           values:
             - name: oui
+              json_path: Souhait_prise_en_charge_post_rcp.accord
               position:
                 x: 1.51
                 y: 17.17
@@ -472,18 +536,25 @@ pages:
                 - type: list
                   values:
                     - name: oui
+                      json_path: Souhait_prise_en_charge_post_rcp.souhait_patient
                       position:
                         x: 13.25
                         y: 16.13
                     - name: non
+                      json_path: Souhait_prise_en_charge_post_rcp.souhait_patient
+                      json_value: "false"
                       position:
                         x: 14.58
                         y: 16.13
             - name: NON, quel que soit le traitement proposé
+              json_path: Souhait_prise_en_charge_post_rcp.accord
+              json_value: "false"
               position:
                 x: 8.35
                 y: 17.17
             - name: NON pour ces traitements
+              json_path: Souhait_prise_en_charge_post_rcp.eligibilite
+              json_value: "false"
               position:
                 x: 1.54
                 y: 16.7
@@ -492,6 +563,8 @@ pages:
         - type: list
           values:
             - name: oui
+              json_path: Information_patient_post_RCP.accord_pour_prévenir_prise_en_charge
+              json_value: "true"
               position:
                 x: 1.55
                 y: 13.5
@@ -507,6 +580,8 @@ pages:
                         x: 9.35
                         y: 12.95
             - name: non
+              json_path: Information_patient_post_RCP.accord_pour_prévenir_prise_en_charge
+              json_value: "false"
               position:
                 x: 12
                 y: 13.5
