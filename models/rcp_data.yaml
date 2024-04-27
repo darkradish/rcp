@@ -1,6 +1,6 @@
 ---
 pages:
-  1: 
+  1:
     etablissement:
       elem:
         - type: string
@@ -245,7 +245,7 @@ pages:
                         unit: ""
                         between:
                           - 1
-                          - 10
+                          - 2
                         position:
                           x: 11.45
                           y: 15.6
@@ -262,10 +262,10 @@ pages:
                         values:
                           - ici
                       - name: Taille
-                        type: float
+                        type: int
                         unit: cm
                         between:
-                          - 0.1
+                          - 1
                           - 10
                         position:
                           x: 14.57
@@ -354,10 +354,11 @@ pages:
           position:
             x: 8.85
             y: 3.5
-        - type: string
+        - type: int
           name: ECOG
           values:
-            - ne sait pas
+            - 0
+            
           position:
             x: 15.06
             y: 3.5
@@ -365,7 +366,7 @@ pages:
     donnees_biologiques:
       elem:
         - type: float
-          name: Bilirubine 
+          name: Bilirubine
           between:
             - 0
             - 5
@@ -374,7 +375,7 @@ pages:
             x: 4.15
             y: 26.8
         - type: float
-          name: Créatinine 
+          name: Créatinine
           between:
             - 0
             - 5
@@ -383,7 +384,7 @@ pages:
             x: 9.46
             y: 26.8
         - type: float
-          name: Albumine 
+          name: Albumine
           between:
             - 0
             - 5
@@ -392,7 +393,7 @@ pages:
             x: 15.32
             y: 26.8
         - type: float
-          name: Plaquettes 
+          name: Plaquettes
           between:
             - 0
             - 5
@@ -401,7 +402,7 @@ pages:
             x: 3.34
             y: 25.9
         - type: float
-          name: TP  
+          name: TP
           between:
             - 0
             - 5
@@ -421,7 +422,7 @@ pages:
                 x: 11.6
                 y: 25.4
         - type: float
-          name: INR  
+          name: INR
           between:
             - 0
             - 5
@@ -430,7 +431,7 @@ pages:
             x: 14.74
             y: 25.9
         - type: float
-          name: Facteur V  
+          name: Facteur V
           between:
             - 0
             - 100
@@ -439,7 +440,7 @@ pages:
             x: 3.79
             y: 24.73
         - type: float
-          name: Facteur V  
+          name: Facteur V
           between:
             - 0
             - 5
@@ -497,11 +498,11 @@ pages:
               elem:
                 - type: list
                   values:
-                    - name: Appel 
+                    - name: Appel
                       position:
                         x: 5.5
                         y: 12.95
-                    - name: Consultation 
+                    - name: Consultation
                       position:
                         x: 9.35
                         y: 12.95
