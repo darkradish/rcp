@@ -36,6 +36,7 @@ from PyPDF2 import PdfReader, PdfWriter
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4, mm
 import yaml
+import json
 
 PDF_SRC = "models/Trame de fiche RCP CHC.pdf"
 PDF_DEST = "files/test.pdf"
@@ -45,6 +46,7 @@ DAY_BETWEEN_2 = datetime.today()
 PACKET = io.BytesIO()
 MEMORY = {}
 NB_FILES = 10
+JSON_MODEL = {}
 
 
 def random_date(start, end):
@@ -168,7 +170,7 @@ def set_elem(element):
     return draw_info
 
 
-def deep_write_calq(can, draw):
+def deep_write_calq(can, draw, json_path ={}):
     """Deep write with infinite elem
 
     Args:
@@ -183,8 +185,18 @@ def deep_write_calq(can, draw):
             can.drawString(float(draw["position"]
                                  ["x"])*10.0*mm, float(draw
                                                        ["position"]["y"])*10.0*mm, str(draw["value"]))
+            if "json_path" in draw:
+                set_value_by_path(JSON_MODEL, draw["json_path"], str(draw["value"]))
+                print(f"+++++++++++++ {JSON_MODEL}")
         if "elem" in draw:
             deep_write_calq(can, draw)
+
+def set_value_by_path(data, path, value):
+    keys = path.split('.')
+    current = data
+    for key in keys[:-1]:
+        current = current.setdefault(key, {})
+    current[keys[-1]] = value
 
 
 def write_calq(datas):
@@ -234,6 +246,7 @@ if __name__ == "__main__":
 
     for nb in range(NB_FILES):
         existing_pdf = PdfReader(PDF_SRC)
+        JSON_MODEL = {}
         
         output = PdfWriter()
         for page_nb, page_datas in datas["pages"].items():
@@ -246,4 +259,6 @@ if __name__ == "__main__":
 
         filename, file_extension = os.path.splitext(PDF_DEST)
         write_pdf(output, f"{filename}_{nb}{file_extension}")
+        with open(f"{filename}_{nb}.json", "w") as f:
+            json.dump(JSON_MODEL, f)
         PACKET.truncate(0)
