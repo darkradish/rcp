@@ -19,14 +19,18 @@ pages:
             x: 4.71
             y: 15.81
           values:
-            - albert
+            - DUPONT
+            - DURANT
+            - DUPOND
         - type: string
           name: prenom
           position:
             x: 2.73
             y: 14.83
           values:
-            - george
+            - George
+            - Alice
+            - Julie
         - type: string
           name: sexe
           position:
@@ -356,9 +360,11 @@ pages:
             y: 3.5
         - type: int
           name: ECOG
-          values:
+          between:
             - 0
-            
+            - 4
+          
+
           position:
             x: 15.06
             y: 3.5
@@ -368,8 +374,8 @@ pages:
         - type: float
           name: Bilirubine
           between:
-            - 0
-            - 5
+            - 10
+            - 60
           unit: ""
           position:
             x: 4.15
@@ -377,8 +383,8 @@ pages:
         - type: float
           name: Créatinine
           between:
-            - 0
-            - 5
+            - 50
+            - 120
           unit: ""
           position:
             x: 9.46
@@ -386,8 +392,8 @@ pages:
         - type: float
           name: Albumine
           between:
-            - 0
-            - 5
+            - 20
+            - 35
           unit: ""
           position:
             x: 15.32
@@ -395,8 +401,8 @@ pages:
         - type: float
           name: Plaquettes
           between:
-            - 0
-            - 5
+            - 20
+            - 450
           unit: ""
           position:
             x: 3.34
@@ -405,7 +411,7 @@ pages:
           name: TP
           between:
             - 0
-            - 5
+            - 100
           unit: ""
           position:
             x: 8.37
@@ -424,8 +430,8 @@ pages:
         - type: float
           name: INR
           between:
-            - 0
-            - 5
+            - 0.2
+            - 1.2
           unit: ""
           position:
             x: 14.74
@@ -440,10 +446,10 @@ pages:
             x: 3.79
             y: 24.73
         - type: float
-          name: Facteur V
+          name: AFP
           between:
             - 0
-            - 5
+            - 1000
           unit: ""
           position:
             x: 10.73
